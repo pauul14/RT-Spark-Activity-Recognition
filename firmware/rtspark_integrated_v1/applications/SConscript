@@ -1,0 +1,4 @@
+from building import *
+group = DefineGroup('Integrated', Glob('*.c'), depend=[''], CPPPATH=[GetCurrentDir()],
+                    LOCAL_CCFLAGS='-Wall -Wextra -Wformat=2 -Werror')
+Return('group')

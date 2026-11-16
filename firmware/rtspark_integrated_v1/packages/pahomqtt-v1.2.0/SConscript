@@ -1,0 +1,5 @@
+from building import *
+cwd = GetCurrentDir()
+group = DefineGroup('paho-mqtt', Glob('MQTTPacket/src/*.c'), depend=['PKG_USING_PAHOMQTT'],
+                    CPPPATH=[cwd + '/MQTTPacket/src'])
+Return('group')

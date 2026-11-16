@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors><certificates src="system" /></trust-anchors>
+    </base-config>
+    <!-- Included only in debug builds and scoped to the emulator's host-loopback alias.
+         Other hosts keep system trust. Hostname verification remains enabled. -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="false">10.0.2.2</domain>
+        <trust-anchors><certificates src="@raw/demo_ca" /></trust-anchors>
+    </domain-config>
+</network-security-config>

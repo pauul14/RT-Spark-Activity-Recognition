@@ -1,0 +1,17 @@
+{
+ "source": "real backend response, synthetic data",
+ "current": {
+  "device_id": "dataset-demo",
+  "state": "WAITING",
+  "activity": null,
+  "hardware_validated": false,
+  "server_timestamp": null,
+  "boot_id": null,
+  "reason": "no_telemetry"
+ },
+ "history": {
+  "items": [],
+  "limit": 25,
+  "next_before_id": null
+ }
+}

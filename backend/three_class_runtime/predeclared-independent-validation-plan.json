@@ -1,0 +1,70 @@
+{
+  "schema": "board-v2-independent-validation-plan-v1",
+  "status": "predeclared_not_executed",
+  "declared_local_date": "2026-11-07",
+  "timezone": "Asia/Shanghai",
+  "feature_set_id": "board_4s_v2_gravity_free",
+  "feature_contract_sha256": "83524d5b04513a38a99e6c02593f7b4380d3beb05d120619459cdbfed0e89f0d",
+  "placement": "sling-lcddown-v1",
+  "orientation": "LCD down; USB toward wearer; fixed front sling bag worn on body",
+  "scope": "One wearer: standing still, walking/marching in place, jogging in place; no desk/sitting/general activity claim.",
+  "fresh_independent_held_out_boots": [
+    "new-C",
+    "new-D"
+  ],
+  "seconds_per_trial": 90,
+  "labels": [
+    "walking",
+    "running",
+    "stationary"
+  ],
+  "minimum_valid_windows_per_class_per_boot": 60,
+  "order": {
+    "new-C": [
+      "stationary",
+      "walking",
+      "running"
+    ],
+    "new-D": [
+      "running",
+      "stationary",
+      "walking"
+    ]
+  },
+  "candidate_model_data_code_recipe_and_manifest_hashes_frozen_before_holdout_access": true,
+  "different_hardware_boot_ids_required_from_each_other_and_all_development_boots": true,
+  "fresh_same_boot_identity_sensor_metadata_and_quality_proof": true,
+  "sensor_only_network_off": true,
+  "retain_original_UART_sidecar_intent_confirmation_and_hashes": true,
+  "sampling_FIR_window_stride_unchanged": true,
+  "fixed_FIR_edge_exclusion_ms": 2000,
+  "rules": {
+    "balanced_accuracy_min": 0.9,
+    "recall_min_every_class": 0.9,
+    "stationary_precision_min": 0.9,
+    "apply_to": [
+      "pooled_C_D",
+      "each_boot_C",
+      "each_boot_D"
+    ],
+    "all_rules_must_pass": true,
+    "balanced_accuracy_definition": "Unweighted arithmetic mean of the three class recalls",
+    "zero_stationary_predictions_precision_value": 0.0,
+    "no_missing_class_allowed": true
+  },
+  "report": [
+    "Per-boot and pooled confusion matrices and class metrics",
+    "Trial and window counts",
+    "Error sequence positions and false-stationary runs",
+    "Overlapping windows are correlated; no IID-window confidence claim"
+  ],
+  "single_frozen_evaluation": true,
+  "no_test_tuning_relabelling_or_cherry_picked_intervals": true,
+  "failed_holdout_policy": "Any diagnosis/revision using C/D consumes them as development; a further revision needs new unseen boots.",
+  "quality_failure_policy": "Preserve failed originals, stop and document; no performance-based retries or replacement selection.",
+  "passing_is_not_approval": true,
+  "explicit_model_approval_and_versioned_production_integration_required": true,
+  "training_authorized": false,
+  "collection_reset_flash_or_cloud_authorized": false,
+  "production_stationary_enabled": false
+}

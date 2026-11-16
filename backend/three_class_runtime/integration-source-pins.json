@@ -1,0 +1,11 @@
+{
+  "feature-contract.json": "2e709e99ea489ad4b33fb6c423bad1a9baba6c1ec17ed8b46f42da08e4851ed4",
+  "feature_set.py": "c37c0592a6bcbba9eb740e81164669669a61fe6cf17d2447f4513d5fb588ac31",
+  "ordered-feature-lists.json": "c8e2e7ad95f2c1bceb2827f8b71ab43723ff74538e76de57fcddb572da4dc966",
+  "predeclared-independent-validation-plan.json": "8db5770c3e3ba846c7fd778af72ed7ca388e69c792c261dce875681eee1c92c0",
+  "reference-source-hashes.json": "2f975e0dbea3414899aeb7ea7bf93450e093e13809a0e9ba378127c523668b50",
+  "research_model.py": "c850685b0f9794bc4a5f363cb484e281a33554edb94c33c8e6a621ae9b4405d9",
+  "legacy_reference/baseline.py": "fb2b57db737264e76cec6499a753ddc1afbd17e0e216929cd9b21f1ff2c4a994",
+  "legacy_reference/board_pipeline.py": "74971d898b39457a116d9a73e3e25f740732d2015a696f98bc1eb355841d3acc",
+  "legacy_reference/download_dataset.py": "4f7e415157618528b9b94d4f8589cb119058c30630354ede9ac2acf782f23e3f"
+}

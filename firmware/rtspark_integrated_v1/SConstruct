@@ -1,0 +1,73 @@
+import os
+import sys
+import rtconfig
+
+RTT_ROOT = os.path.abspath(os.path.join(os.getcwd(), "..", "rt-thread"))
+
+sys.path = sys.path + [os.path.join(RTT_ROOT, 'tools')]
+try:
+    from building import *
+except:
+    print('Cannot found RT-Thread root directory, please check RTT_ROOT')
+    exit(-1)
+
+TARGET = 'rt-thread.' + rtconfig.TARGET_EXT
+
+DefaultEnvironment(tools=[])
+env = Environment(tools = ['mingw'],
+    AS = rtconfig.AS, ASFLAGS = rtconfig.AFLAGS,
+    CC = rtconfig.CC, CFLAGS = rtconfig.CFLAGS,
+    AR = rtconfig.AR, ARFLAGS = '-rc',
+    CXX = rtconfig.CXX, CXXFLAGS = rtconfig.CXXFLAGS,
+    LINK = rtconfig.LINK, LINKFLAGS = rtconfig.LFLAGS)
+env.PrependENVPath('PATH', rtconfig.EXEC_PATH)
+# SCons hides the shell environment from the compiler. Without this, kservice.c's
+# __DATE__/__TIME__ banner changes the image hash on every build.
+env['ENV']['SOURCE_DATE_EPOCH'] = os.environ.get('SOURCE_DATE_EPOCH', '1793404800')
+
+if rtconfig.PLATFORM in ['iccarm']:
+    env.Replace(CCCOM = ['$CC $CFLAGS $CPPFLAGS $_CPPDEFFLAGS $_CPPINCFLAGS -o $TARGET $SOURCES'])
+    env.Replace(ARFLAGS = [''])
+    env.Replace(LINKCOM = env["LINKCOM"] + ' --map rt-thread.map')
+
+Export('RTT_ROOT')
+Export('rtconfig')
+
+SDK_ROOT = os.path.abspath('./')
+
+if os.path.exists(SDK_ROOT + '/libraries'):
+    libraries_path_prefix = SDK_ROOT + '/libraries'
+
+else:
+    libraries_path_prefix = os.path.dirname(SDK_ROOT) + '../../libraries'
+
+SDK_LIB = libraries_path_prefix
+Export('SDK_LIB')
+
+
+
+# prepare building environment
+objs = PrepareBuilding(env, RTT_ROOT, has_libcpu=False)
+
+stm32_library = 'STM32F4xx_HAL'
+rtconfig.BSP_LIBRARY_TYPE = stm32_library
+
+if not os.path.exists('libraries'):
+    # include libraries
+    objs.extend(SConscript(os.path.join(libraries_path_prefix, stm32_library, 'SConscript')))
+
+    # include drivers
+    objs.extend(SConscript(os.path.join(libraries_path_prefix, 'HAL_Drivers', 'SConscript')))
+
+# Private WLAN copies add credential erasure and repair SDK error-unlock exits.
+# The application SConscript compiles them; remove the official versions only.
+objs = [o for o in objs if os.path.basename(str(o)) not in ('wlan_mgnt.o', 'wlan_dev.o')]
+
+# make a building
+env.Replace(CPPDEFINES=list(env.get("CPPDEFINES", [])))
+# building.py passes objects through set(), and SCons nodes hash by address, so the
+# link order differs per run. Sorting here gives identical bytes from identical sources.
+link_program = env.Program
+env.Program = lambda target, sources, **options: link_program(target, sorted(
+    [o for o in env.Flatten(sources) if os.path.basename(str(o)) not in ('wlan_mgnt.o', 'wlan_dev.o')], key=str), **options)
+DoBuilding(TARGET, objs)

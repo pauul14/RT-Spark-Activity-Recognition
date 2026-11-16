@@ -1,0 +1,9 @@
+{
+  "source": "C:\\Users\\John Paul\\Documents\\ChatGPT\\JP\\rt-spark-stationary-20261106\\preflight-session-20261106T150055923172Z\\orientation-clarified-research-v1\\ml",
+  "files": {
+    "baseline.py": "fb2b57db737264e76cec6499a753ddc1afbd17e0e216929cd9b21f1ff2c4a994",
+    "board_pipeline.py": "74971d898b39457a116d9a73e3e25f740732d2015a696f98bc1eb355841d3acc",
+    "download_dataset.py": "4f7e415157618528b9b94d4f8589cb119058c30630354ede9ac2acf782f23e3f"
+  },
+  "legacy_extractor_modified": false
+}

@@ -1,0 +1,6 @@
+from building import *
+cwd = GetCurrentDir()
+group = DefineGroup('mbedtls36', Glob('library/*.c'), depend=['PKG_USING_MBEDTLS'],
+                    CPPPATH=[cwd + '/include', cwd + '/library', cwd + '/../../applications'],
+                    CPPDEFINES=[('MBEDTLS_CONFIG_FILE', r'\"bca_mbedtls_config.h\"')])
+Return('group')

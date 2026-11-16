@@ -1,0 +1,38 @@
+{
+ "source": "real backend response, synthetic data",
+ "current": {
+  "device_id": "dataset-demo",
+  "boot_id": "fixture-boot",
+  "sequence_end": 3,
+  "device_timestamp_ms": 3799,
+  "mode": "dataset_demo",
+  "server_timestamp": "2026-11-03T11:39:58.509Z",
+  "state": "UNVALIDATED",
+  "activity": null,
+  "hardware_validated": false,
+  "reason": "dataset_demo_only"
+ },
+ "history": {
+  "items": [
+   {
+    "id": 1,
+    "device_id": "dataset-demo",
+    "boot_id": "fixture-boot",
+    "sequence_end": 3,
+    "activity": "walking",
+    "walking_probability": 0.9986951669732205,
+    "running_probability": 0.0013048330267795261,
+    "window_start_ms": 0,
+    "device_timestamp_ms": 3799,
+    "server_timestamp": "2026-11-03T11:39:58.508Z",
+    "model_id": "sha256:189e20e5fd67dd9a76223ba6d738896f000f42e8b0a4cabd956794864685252b:approximately_4s_v1",
+    "inference_mode": "dataset_demo",
+    "hardware_validated": false,
+    "stationary_probability": 0.0,
+    "prediction_schema_version": 1
+   }
+  ],
+  "limit": 25,
+  "next_before_id": null
+ }
+}
