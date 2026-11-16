@@ -1,6 +1,6 @@
 # RT-Spark Activity Recognition
 
-BCA182 Lab 3 implements a three-class activity monitor using an RT-Spark STM32F407 board, RT-Thread, secure MQTT, a Python inference backend and a native Android dashboard.
+BCA182 Lab 3 implements a three-class activity monitor using an RT-Spark STM32F407 board, RT-Thread, secure MQTT, Python inference backend and a native Android dashboard.
 
 The genuine hardware demonstration completed on **November 13, 2026**. The preserved deliverable package was verified on **November 14, 2026**. This repository contains a curated source copy and the frozen models from that package.
 
